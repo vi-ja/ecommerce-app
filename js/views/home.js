@@ -16,18 +16,33 @@ export function renderHome(app) {
   const products = getProducts().slice(0, 4);
   const categories = getCategories();
   app.innerHTML = `
-    <section class="hero-section">
+    <section class="hero-section" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">Curated essentials</p>
-        <h1>Discover pieces that move with your day.</h1>
+        <h1 id="hero-title">Discover pieces that move with your day.</h1>
         <p>Premium catalog experience with thoughtful styling, flexible filters, and effortless checkout.</p>
         <div class="button-row">
           <a class="btn btn-primary" href="/products" data-route="/products">Browse Products</a>
           <a class="btn btn-secondary" href="/about" data-route="/about">Learn More</a>
         </div>
       </div>
-      <div class="hero-panel">
+      <div class="hero-side-card">
+        <div class="hero-badge">New season</div>
         <img src="assets/nova-runner.svg" alt="Featured product hero" />
+      </div>
+      <div class="hero-stats" aria-label="Highlights">
+        <div>
+          <strong>4.9/5</strong>
+          <span>Rated picks</span>
+        </div>
+        <div>
+          <strong>Free</strong>
+          <span>Shipping</span>
+        </div>
+        <div>
+          <strong>24/7</strong>
+          <span>Support</span>
+        </div>
       </div>
     </section>
 
