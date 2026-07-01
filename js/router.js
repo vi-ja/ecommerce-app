@@ -7,14 +7,43 @@ const routes = {
   '/contact': 'contact'
 };
 
+function getBasePath() {
+  const pathname = window.location.pathname || '/';
+  const segments = pathname.split('/').filter(Boolean);
+  const knownRoutes = new Set(['products', 'product', 'cart', 'about', 'contact']);
+
+  if (segments.length > 1 || (segments.length === 1 && !knownRoutes.has(segments[0]))) {
+    return `/${segments[0]}`;
+  }
+
+  return '';
+}
+
+function normalizePath(path) {
+  const [pathPart, ...queryParts] = path.split('?');
+  const trimmedPath = pathPart === '/' ? '/' : pathPart.replace(/\/$/, '');
+  const basePath = getBasePath();
+  const withBase = !basePath ? trimmedPath : `${basePath}${trimmedPath === '/' ? '' : trimmedPath}`;
+  const query = queryParts.length ? `?${queryParts.join('?')}` : '';
+  return `${withBase}${query}`;
+}
+
+function getPathname() {
+  const pathname = window.location.pathname || '/';
+  const basePath = getBasePath();
+
+  if (!basePath) return pathname;
+  return pathname.startsWith(basePath) ? pathname.slice(basePath.length) || '/' : pathname;
+}
+
 export function navigate(path) {
-  const normalized = path === '/' ? '/' : path.replace(/\/$/, '');
+  const normalized = normalizePath(path);
   window.history.pushState({}, '', normalized);
   renderRoute();
 }
 
 export function renderRoute() {
-  const pathname = window.location.pathname || '/';
+  const pathname = getPathname();
   const routeName = routes[pathname] || routes['/'];
   const app = document.getElementById('app');
   if (!app) return;
@@ -35,4 +64,16 @@ export function renderRoute() {
   }
 }
 
+function handleInitialRoute() {
+  const params = new URLSearchParams(window.location.search);
+  const redirectedPath = params.get('p');
+
+  if (redirectedPath) {
+    window.history.replaceState({}, '', normalizePath(decodeURIComponent(redirectedPath)));
+  }
+
+  renderRoute();
+}
+
+window.addEventListener('DOMContentLoaded', handleInitialRoute);
 window.addEventListener('popstate', renderRoute);
