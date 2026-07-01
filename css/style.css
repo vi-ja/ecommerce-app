@@ -33,7 +33,9 @@ img { max-width: 100%; display: block; }
 .cart-badge { margin-left: 0.4rem; background: var(--primary); color: white; border-radius: 999px; padding: 0.15rem 0.45rem; font-size: 0.8rem; }
 #app { padding: 2rem 0 4rem; }
 .hero-section, .panel, .product-card, .checkout-card, .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow); }
-.hero-section { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; padding: 2rem; align-items: center; margin-bottom: 2rem; }
+.hero-section { display: grid; grid-template-columns: 30% 40% 30%; gap: 1.5rem; padding: 2rem; align-items: center; margin-bottom: 2rem; }
+.hero-copy { grid-column: 1 / span 2; }
+.hero-panel { grid-column: 3; }
 .hero-copy h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-bottom: 1rem; }
 .hero-copy p { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; }
 .button-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
@@ -52,12 +54,13 @@ img { max-width: 100%; display: block; }
 .product-meta { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.95rem; }
 .price { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); }
 .filters, .cart-list, .detail-grid, .contact-card { display: grid; gap: 1.25rem; }
-.filters { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 1.25rem; }
+.filters { grid-template-columns: 30% 30% 40%; margin-bottom: 1.25rem; }
 .filters label { display: grid; gap: 0.35rem; font-size: 0.95rem; color: var(--muted); }
 .filters input, .filters select { padding: 0.7rem 0.8rem; border: 1px solid var(--border); border-radius: 12px; font: inherit; }
-.detail-grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
-.detail-card { padding: 1.5rem; border-radius: 24px; background: var(--surface); border: 1px solid var(--border); }
-.cart-list { grid-template-columns: 1fr 280px; align-items: start; }
+.detail-grid { grid-template-columns: 30% 40% 30%; align-items: start; }
+.detail-card:first-child { grid-column: 1 / span 2; }
+.detail-card:last-child { grid-column: 3; }
+.cart-list { grid-template-columns: 60% 40%; align-items: start; }
 .cart-item { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; }
 .cart-item .qty-controls { display: flex; gap: 0.5rem; align-items: center; }
 .cart-item button, .pill-btn { border: none; border-radius: 999px; background: var(--surface-2); padding: 0.45rem 0.7rem; cursor: pointer; }
