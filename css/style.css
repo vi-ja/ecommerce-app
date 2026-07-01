@@ -34,8 +34,9 @@ img { max-width: 100%; display: block; }
 #app { padding: 2rem 0 4rem; }
 .hero-section, .panel, .product-card, .checkout-card, .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow); }
 .hero-section { display: grid; grid-template-columns: 30% 40% 30%; gap: 1.5rem; padding: 2rem; align-items: center; margin-bottom: 2rem; }
-.hero-copy { grid-column: 1 / span 2; }
-.hero-panel { grid-column: 3; }
+.hero-copy { grid-column: 1 / span 2; min-width: 0; }
+.hero-panel { grid-column: 3; display: flex; justify-content: center; }
+.hero-panel img { width: 100%; max-width: 280px; }
 .hero-copy h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-bottom: 1rem; }
 .hero-copy p { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; }
 .button-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }

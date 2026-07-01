@@ -24,3 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderRoute();
   updateActiveLink(window.location.pathname || '/');
 });
+
+window.addEventListener('resize', () => {
+  document.documentElement.style.setProperty('--hero-columns', window.innerWidth < 920 ? '1fr' : '30% 40% 30%');
+});
