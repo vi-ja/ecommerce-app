@@ -43,8 +43,11 @@ export function navigate(path) {
 }
 
 export function renderRoute() {
+  const params = new URLSearchParams(window.location.search);
+  const pageParam = params.get('page');
   const pathname = getPathname();
-  const routeName = routes[pathname] || routes['/'];
+  const explicitRoute = pageParam ? routes[`/${pageParam}`] || routes['/'] : null;
+  const routeName = explicitRoute || routes[pathname] || routes['/'];
   const app = document.getElementById('app');
   if (!app) return;
 
